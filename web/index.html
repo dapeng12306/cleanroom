@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>净界OS · 洁净车间智能保洁人机协同一体化软件</title>
+<link rel="stylesheet" href="/web/css/main.css">
+</head>
+<body>
+
+<!-- ======================= 登录视图 ======================= -->
+<div id="loginView" class="login-view">
+  <canvas id="loginParticles"></canvas>
+  <div class="login-hero">
+    <div class="hero-badge">ISO Class 5-8 · 全线联动</div>
+    <h1>净界<span>OS</span></h1>
+    <p class="hero-sub">洁净车间智能保洁 · 人机协同 · 一体化管控</p>
+    <div class="hero-points">
+      <div><b>3D</b><i>车间数字孪生</i></div>
+      <div><b>AI</b><i>污渍视觉识别</i></div>
+      <div><b>⚙</b><i>规则引擎驱动</i></div>
+    </div>
+  </div>
+  <div class="login-card">
+    <h2>人员签到</h2>
+    <p class="login-tip">请使用车间账号登录（演示口令均为 123456）</p>
+    <div class="field"><label>工号账号</label><input id="loginUser" placeholder="如 chenjing / sunmei / zhouyang" autocomplete="username"></div>
+    <div class="field"><label>通行口令</label><input id="loginPass" type="password" placeholder="请输入口令" autocomplete="current-password"></div>
+    <button class="btn-primary btn-block" id="btnLogin">进入车间</button>
+    <div class="login-roles" id="loginRoles"></div>
+    <div class="login-foot">没有账号？<a id="linkRegister">申请建档</a></div>
+  </div>
+</div>
+
+<!-- ======================= 主应用视图 ======================= -->
+<div id="appView" class="app-view" style="display:none">
+  <header class="topbar">
+    <div class="logo" id="logoHome">
+      <div class="logo-mark">净</div>
+      <div class="logo-text"><b>净界OS</b><i>洁净车间人机协同一体化</i></div>
+    </div>
+    <nav class="top-chips" id="topChips"></nav>
+    <div class="user-chip" id="userChip"></div>
+  </header>
+
+  <!-- 菜单中枢：非侧边栏，首页为不对称马赛克磁贴阵 -->
+  <main id="hubView" class="hub-view"></main>
+  <main id="pageHost" class="page-host" style="display:none"></main>
+
+  <!-- 悬浮环形 Dock：任何页面都可快速跳菜单 -->
+  <div class="dock" id="dock">
+    <button class="dock-main" id="dockMain">✦</button>
+    <div class="dock-ring" id="dockRing"></div>
+  </div>
+</div>
+
+<!-- 弹窗与提示挂载点 -->
+<div id="modalRoot"></div>
+<div id="toastRoot"></div>
+
+<script src="/web/js/vendor/three.min.js"></script>
+<script src="/web/js/common.js"></script>
+<script src="/web/js/pages/m01_dashboard.js"></script>
+<script src="/web/js/pages/m02_monitor.js"></script>
+<script src="/web/js/pages/m03_tasks.js"></script>
+<script src="/web/js/pages/m04_robots.js"></script>
+<script src="/web/js/pages/m05_staff.js"></script>
+<script src="/web/js/pages/m06_ai.js"></script>
+<script src="/web/js/pages/m07_materials.js"></script>
+<script src="/web/js/pages/m08_quality.js"></script>
+<script src="/web/js/pages/m09_equipment.js"></script>
+<script src="/web/js/pages/m10_alarms.js"></script>
+<script src="/web/js/pages/m11_analytics.js"></script>
+<script src="/web/js/main.js"></script>
+</body>
+</html>

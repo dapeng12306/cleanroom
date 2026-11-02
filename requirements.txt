@@ -1,0 +1,16 @@
+# ============================================
+# 洁净车间智能保洁人机协同一体化软件
+# 两种部署方式任选其一：
+#   1) Streamlit Community Cloud  —— 自动检测此文件 + app.py
+#   2) 本地/Flask 原始方式        —— flask + 其他依赖
+# ============================================
+
+# ---- Streamlit Cloud 必需 ----
+streamlit>=1.40.0
+pandas>=2.0.0
+Pillow>=10.0.0
+opencv-python-headless>=4.9.0
+numpy>=2.0.0
+
+# ---- Flask 原始后端（可选，Streamlit 部署不需要）----
+flask>=3.0

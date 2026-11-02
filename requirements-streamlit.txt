@@ -1,0 +1,7 @@
+# Streamlit Community Cloud 专用依赖
+# 注意：社区云默认 Python 3.12，Streamlit 最新版兼容 3.9~3.12，
+#       opencv-python-headless 避免容器里没 GUI 依赖
+streamlit>=1.40.0
+numpy>=2.0.0
+opencv-python-headless>=4.9.0
+Pillow>=10.0.0
