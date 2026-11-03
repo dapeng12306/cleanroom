@@ -175,18 +175,19 @@ def page_dashboard(user):
         for z in zones:
             ratio = (z["mean_particle"] or 0) / z["target_particles"] * 100
             rows.append([
-                z["id"], f"{status_colors.get(z['status'],'⚪')} ISO{z['iso_class']} {z['name']}",
+                f"{status_colors.get(z['status'],'⚪')} ISO{z['iso_class']} {z['name']}",
                 f"{round(z['mean_particle'] or 0, 0)} / {z['target_particles']}",
-                st.progress(ratio / 100), f"{ratio:.0f}%", z["alarm_cnt"]])
-        df = pd.DataFrame(rows, columns=["id", "区域", "实测 / 限值", "progress", "%", "报警"])
-        st.dataframe(df[["区域", "实测 / 限值", "progress", "报警"]],
-                     use_container_width=True, hide_index=True,
+                min(ratio / 100, 1.0),  # ProgressColumn 吃 0~1 数值，不是 st.progress() 对象
+                z["alarm_cnt"]])
+        df = pd.DataFrame(rows, columns=["区域", "实测 / 限值", "progress", "报警"])
+        st.dataframe(df, use_container_width=True, hide_index=True,
                      column_config={"progress": st.column_config.ProgressColumn(
-                         "相对负荷", width="medium")})
+                         "相对负荷", width="medium", format="%.0f%%")})
     with right:
         st.subheader("🚨 未结报警 Top 5")
-        alarms = q("""SELECT a.*, z.name AS zone_name, r.name AS robot_name
-                      FROM alarms a LEFT JOIN zones z ON z.id=a.zone_id
+        alarms = q("""SELECT a.*, z.name AS zone_name
+                      FROM alarms a
+                      LEFT JOIN zones z ON z.id=a.zone_id
                       ORDER BY CASE a.level WHEN 'critical' THEN 0
                                            WHEN 'major' THEN 1 ELSE 2 END, a.id DESC LIMIT 5""")
         for a in alarms:
