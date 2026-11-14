@@ -1,0 +1,6 @@
+# Flask 版云端部署依赖（Render / Hugging Face Spaces / 自建服务器）
+# Streamlit 版请用 requirements.txt，本地开发请用 .venv 里已装好的包
+flask>=3.0
+numpy>=2.0.0
+opencv-python-headless>=4.10.0
+gunicorn>=21.2.0

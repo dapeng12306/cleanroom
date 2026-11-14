@@ -80,6 +80,13 @@ STATUS_TEXT = {
     "resolved": "已解决", "ignored": "已忽略", "pending": "待审批",
     "approved": "已批准", "rejected": "已驳回", "returned": "已归还",
     "draft": "草稿", "submitted": "已提交",
+    # 设备状态（之前漏了，导致设备设施页崩溃）
+    "running": "运行中", "stopped": "已停机",
+    "maintenance": "维护中", "fault": "故障",
+    # 人员状态
+    "idle": "空闲", "busy": "作业中", "leave": "请假",
+    # 任务终态补全
+    "auto": "自动", "manual": "手动", "collaborative": "协同",
 }
 
 

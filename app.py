@@ -704,13 +704,15 @@ def page_analytics(user):
         if pred.get("peak"):
             st.caption(f"未来预测峰值：**{pred['peak']:.0f} 个/m³**　预测次数 {len(pred['points'])}　"
                        f"拟合系数 {pred['coef']}")
-        # 拼接实测 + 预测
+        # 拼接实测 + 预测（ISO 限值贯穿全程，长度必须对齐 hist+fut）
         hist_vals = [r["value"] for r in readings]
         fut_vals = [p["value"] for p in pred["points"]]
-        future_lim = [z["target_particles"]] * len(fut_vals)
-        df = pd.DataFrame({"实测": hist_vals + [None] * len(fut_vals),
-                           "预测": [None] * len(hist_vals) + fut_vals,
-                           "ISO限值": future_lim})
+        n_total = len(hist_vals) + len(fut_vals)
+        df = pd.DataFrame({
+            "实测": hist_vals + [None] * len(fut_vals),
+            "预测": [None] * len(hist_vals) + fut_vals,
+            "ISO限值": [z["target_particles"]] * n_total,
+        })
         st.line_chart(df, use_container_width=True)
 
     # ---- 建议引擎 ----

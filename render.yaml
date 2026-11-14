@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: cleanroom-flask
+    runtime: python
+    plan: free
+    region: singapore      # 离国内最近，延迟最低
+    autoDeploy: true
+    buildCommand: pip install -r requirements-flask.txt
+    startCommand: gunicorn wsgi:app --workers 1 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
